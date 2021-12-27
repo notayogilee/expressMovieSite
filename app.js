@@ -9,7 +9,9 @@ var indexRouter = require('./routes/index');
 var app = express();
 
 const helmet = require('helmet');
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
 
 require('dotenv').config();
 
