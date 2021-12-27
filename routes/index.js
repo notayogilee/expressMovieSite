@@ -28,4 +28,17 @@ router.get('/', function (req, res, next) {
 
 });
 
+router.get('/movie/:id', (req, res, next) => {
+  const id = req.params.id;
+  const thisMovieUrl = `${apiBaseUrl}/movie/${id}?api_key=${apiKey}`;
+
+  request.get(thisMovieUrl, (error, response, movieData) => {
+    const parsedData = JSON.parse(movieData);
+    // res.json(parsedData)
+    res.render('single-movie', {
+      parsedData
+    })
+  })
+})
+
 module.exports = router;
